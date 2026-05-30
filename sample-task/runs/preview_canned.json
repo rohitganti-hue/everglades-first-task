@@ -1,0 +1,9 @@
+{
+  "draft": "sample-modular-black-box",
+  "model": "claude-opus-4-7",
+  "attempts": 8,
+  "passed": 1,
+  "classification": "IN_RANGE",
+  "ran_at": "2026-05-28T00:00:00+00:00",
+  "note": "Recorded for onboarding. 1/8 <= 2/8 means appropriately hard for the 16-model Taiga ensemble."
+}
