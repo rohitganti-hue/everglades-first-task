@@ -21,10 +21,12 @@ class Oracle:
 
     def _spend(self):
         if self._used >= self.BUDGET:
-            raise RuntimeError("Query budget exceeded (6 evaluate calls).")
+            raise RuntimeError("Query budget exceeded (6 query calls).")
         self._used += 1
 
     def query(self, mode, x=None):
+        if mode in ("evaluate", "sample") and x is None:
+            raise ValueError("x is required for evaluate/sample modes.")
         if mode == "evaluate":
             self._spend()
             return (self._A * x + self._B) % self.M
