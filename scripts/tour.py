@@ -74,7 +74,8 @@ def shortcut() -> bool:
 
 
 def lint() -> bool:
-    answer_tokens = [str(v) for v in _expected()["answer"]]
+    raw = _expected()["answer"]
+    answer_tokens = [str(v) for v in (raw if isinstance(raw, (list, tuple)) else [raw])]
     surface = ((SAMPLE / "problem.md").read_text()
                + "\n" + (SAMPLE / "reasoning_trap.md").read_text())
     leaks = [t for t in answer_tokens if re.search(rf"\b{re.escape(t)}\b", surface)]
@@ -102,7 +103,7 @@ def selftest() -> bool:
         "verify passes": v is True,
         "shortcut fails": s is True,
         "lint clean": l is True,
-        "preview <= 2/8": p["passed"] <= 2,
+        "preview <= 2/8": p["passed"] <= 2 and p["attempts"] == 8,
     }
     print("---")
     for name, passed in checks.items():
@@ -113,11 +114,11 @@ def selftest() -> bool:
 
 
 COMMANDS = {
-    "verify": lambda: verify(),
-    "shortcut": lambda: shortcut(),
-    "lint": lambda: lint(),
-    "preview": lambda: preview(),
-    "selftest": lambda: selftest(),
+    "verify": verify,
+    "shortcut": shortcut,
+    "lint": lint,
+    "preview": preview,
+    "selftest": selftest,
 }
 
 
