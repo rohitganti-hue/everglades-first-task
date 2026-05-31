@@ -73,7 +73,7 @@ artifact each step produced. They've now seen a finished example of every step.
 
 ### Stage 6 — AI Use Policy + graduate
 State the AI Use Policy (concepts.md): Claude helps with **code**, never the **science**
-(prompt, explanation, grading). Then hand off:
+(prompt, explanation, grading guidance, reasoning-trap content). Then hand off:
 
 1. Install and use `everglades-multitask`
    (https://github.com/rohitganti-hue/everglades-multitask).
