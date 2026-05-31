@@ -12,7 +12,7 @@ modular rule behind them.
 3. **Give each candidate a job** — for every plausible wrong answer, one line on why it
    loses; at least one should look good at first. (`grader/grading_guide.md`)
 4. **Plan the wrong paths** — catalogue the shortcuts a weak solver takes. (`shortcut.py`)
-5. **Build the files** — oracle + main + shortcut. Claude may help with code.
+5. **Build the files** — `oracle/setup.py` + `solution/main.py` + `solution/shortcut.py`. Claude may help with code.
 6. **Design the oracle and the budget** — observations not judgments; a budget tight
    enough that brute force loses; a help mode that doesn't recommend. (`oracle/setup.py`)
 7. **Calibrate** — main passes, shortcut fails, preview ≤ 2/8.

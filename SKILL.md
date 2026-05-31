@@ -41,8 +41,12 @@ this is playbook Steps 1–2.
 ### Stage 3 — Seen vs. hidden
 Contrast what the solver sees with what's hidden:
 - `sample-task/problem.md` — the solver-facing prompt (what they get).
-- `sample-task/oracle/setup.py` — the hidden system: modes, the 6-query budget, the help
-  mode that hints but never recommends, seeded noise.
+- `sample-task/oracle/setup.py` — the hidden system. It exposes `evaluate` (returns an
+  output, spends one of the 6-query budget), `help` (a free hint that never names the
+  answer), and an internal `sample` mode (a budget-spending *noisy* reading, seeded for
+  reproducibility) that the solver-facing `problem.md` deliberately does not advertise.
+- The intended and naive solvers live under `sample-task/solution/` —
+  `solution/main.py` and `solution/shortcut.py`.
 - `sample-task/grader/grading_guide.md` — the near-miss table (playbook Step 3).
 - `sample-task/golden/expected.json` — the locked answer.
 Emphasize the reasoning trap in `sample-task/reasoning_trap.md`: the naive line-fit ignores
@@ -60,7 +64,8 @@ python3 scripts/tour.py preview    # 1/8 — recorded calibration result
 
 After each, explain what it proves (see `concepts.md` → "The calibration signals"). The big
 idea: a task is well-built when the intended solver passes, the shortcut fails, nothing
-leaks, and Opus × 8 lands **≤ 2/8**.
+leaks, and Opus × 8 lands **≤ 2/8**. (There is also a `selftest` subcommand that runs all
+four and asserts the outcomes — it is the fixture's regression guard, not a teaching step.)
 
 ### Stage 5 — Map back to the 8-step playbook
 Walk `reference/concepts.md` → "The 8-step Inverse Task Playbook" and point at which sample
